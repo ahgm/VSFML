@@ -8,27 +8,28 @@ module sf
 #flag windows -l csfml-window
 
 #include "Window.h"
+
 //Clipboard.h
 pub fn get_clipboard() string
 {
 	return tos3(C.sfClipboard_getString())
 }
 pub fn set_clipboard(text string) {
-	C.sfClipboard_setString(text.toc())
+	C.sfClipboard_setString(text.str)
 }
 
-//Context.h
+//Types.h
 [typedef]
 struct C.sfContext
-type Context C.sfContext
-
-pub fn create_context() &Context {
+type Context &C.sfContext
+//Context.h
+pub fn create_context() Context {
 	return C.sfContext_create()
 }
-pub fn destory_context(ctx &Context){
+pub fn destroy_context(ctx Context){
 	C.sfContext_destroy(ctx)
 }
-pub fn active_context(ctx &Context,active bool) {
+pub fn active_context(ctx Context,active bool) {
 	C.sfContext_setActive(ctx,active)
 }
 
@@ -48,7 +49,7 @@ pub enum CursorType{
     cursorhelp                   ///< help cursor
     cursornotallowed              ///< action not allowed cursor
 }
-
+//Types.h
 [typedef]
 struct C.sfCursor
 type Cursor &C.sfCursor
@@ -61,9 +62,10 @@ pub fn create_cursor_pixel(pixels byte) &Cursor{
     return C.sfCursor_createFromPixels(pixels)
 }
 */
-pub fn destory_cursor(cursor Cursor) {
+pub fn destroy_cursor(cursor Cursor) {
     C.sfCursor_destroy(cursor)
 }
+
 //VideoMode.h
 struct C.sfVideoMode {
     width  u32 ///< video mode width, in pixels
@@ -71,6 +73,7 @@ struct C.sfVideoMode {
     bpp    u32 ///< video mode pixel depth, in bits per pixels
 }
 type VideoMode C.sfVideoMode
+
 //Window.h
 pub enum WindowStyle
 {
@@ -100,10 +103,20 @@ struct C.sfContextSettings
 }
 type ContextSettings &C.sfContextSettings
 
-[typedef]
-struct C.sfWindow
+[typedef] //Types.h
+struct C.sfWindow 
 type Window &C.sfWindow
 
-pub fn create_window(vmode VideoMode,title string,style WindowStyle,cs ContextSettings) Window{
-    return C.sfWindow_create(vmode,title.toc(),style,cs)
+pub fn create_win(vmode VideoMode,title string,style WindowStyle,cs ContextSettings) Window{
+    return C.sfWindow_create(vmode,title.str,style,cs)
 }
+pub fn destroy_win(win Window) {
+    C.sfWindow_destroy(win)
+}
+pub fn close_win(win Window) {
+    C.sfWindow_close(win)
+}
+pub fn win_isopen(win Window) bool{
+    return C.sfWindow_isOpen(win)
+}
+
