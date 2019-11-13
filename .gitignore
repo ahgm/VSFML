@@ -1,2 +1,6 @@
 
 .vscode/tasks.json
+*.pdb
+*.exe
+*.ilk
+main.v

@@ -1,9 +1,9 @@
 //CSFML_WINDOW
 module sf
 
-#flag windows -I sfml/include
-#flag windows -I sfml/include/SFML
-#flag windows -L sfml/lib
+#flag windows -I csfml/include
+#flag windows -I csfml/include/SFML
+#flag windows -L csfml/lib
 
 #flag windows -l csfml-window
 
