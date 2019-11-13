@@ -1,6 +1,10 @@
-
 .vscode/tasks.json
 *.pdb
 *.exe
 *.ilk
 main.v
+csfml-audio-2.dll
+csfml-graphics-2.dll
+csfml-network-2.dll
+csfml-system-2.dll
+csfml-window-2.dll
